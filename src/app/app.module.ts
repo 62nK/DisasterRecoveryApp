@@ -11,6 +11,7 @@ import { MachineCodeManagementComponent } from './machine-code-management/machin
 import { MachineCodeSubmissionComponent } from './machine-code-submission/machine-code-submission.component';
 import { TimecardApprovalComponent } from './timecard-approval/timecard-approval.component';
 import { TimecardSubmissionComponent } from './timecard-submission/timecard-submission.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimecardSubmissionComponent } from './timecard-submission/timecard-subm
     MachineCodeManagementComponent,
     MachineCodeSubmissionComponent,
     TimecardApprovalComponent,
-    TimecardSubmissionComponent
+    TimecardSubmissionComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
