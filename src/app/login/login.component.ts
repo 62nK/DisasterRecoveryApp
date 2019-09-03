@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  componentTitle = "Disaster Recovery Application Project";
+  formTitle = "Admin/User Log-In";
+
   constructor() { }
 
   ngOnInit() {

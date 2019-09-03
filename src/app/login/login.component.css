@@ -1,0 +1,20 @@
+h2{
+    text-align: center;
+}
+form{
+    margin: 20px;
+    padding: 20px;
+    width: 250px;
+}
+.login-component {
+    margin: 10px;
+    border: 1px solid black;
+    height: 100%;
+    background-color: grey;
+}
+.form-title{
+    margin: 0 20px 20px;
+}
+.align-right{
+    float: right;
+}
