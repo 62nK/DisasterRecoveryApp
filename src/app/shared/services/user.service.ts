@@ -24,8 +24,7 @@ export class UserService {
 
   public signIn(user: User): Observable<Authentication>{
     this._apiMethod = Apis.signin;
-    return this._httpClient.post<Authentication>(this._url+this._apiMethod, user)
-    .pipe(catchError(this.errorHandler));
+    return this._httpClient.post<Authentication>(this._url+this._apiMethod, user);
   }
 
   errorHandler(error: HttpErrorResponse){
