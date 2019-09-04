@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'log-in', pathMatch: 'full'},
+  {path: '', redirectTo: 'home/machinecode/management', pathMatch: 'full'},
   {path: 'log-in', component: LoginComponent},
   {
     path: 'home', 

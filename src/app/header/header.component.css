@@ -1,0 +1,13 @@
+.header-component{
+    background-color: grey;
+    width: 100%;
+}
+.page-title{
+    padding: 10px;
+    float: left;
+    text-align: left;
+}
+.authenticated-user{
+    padding: 10px;
+    text-align: right;
+}
