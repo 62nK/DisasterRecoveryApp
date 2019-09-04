@@ -1,11 +1,11 @@
-export interface IJob {
+export interface IJobCode {
     code : string;
     description : string;
     hourlyRate : number;
     maxDailyHours: number;
 }
 
-export class Job implements IJob {
+export class JobCode implements IJobCode {
     constructor(public code: string,
         public description : string,
         public hourlyRate : number,
