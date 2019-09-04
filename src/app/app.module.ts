@@ -13,6 +13,7 @@ import { TimecardApprovalComponent } from './timecard-approval/timecard-approval
 import { TimecardSubmissionComponent } from './timecard-submission/timecard-submission.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TimecardApprovalComponent,
     TimecardSubmissionComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

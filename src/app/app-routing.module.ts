@@ -8,17 +8,24 @@ import { JobCodeSubmissionComponent } from './job-code-submission/job-code-submi
 import { TimecardApprovalComponent } from './timecard-approval/timecard-approval.component';
 import { TimecardSubmissionComponent } from './timecard-submission/timecard-submission.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'log-in', pathMatch: 'full'},
   {path: 'log-in', component: LoginComponent},
-  {path: 'machinecode/management', component: MachineCodeManagementComponent},
-  {path: 'machinecode/submission', component: MachineCodeSubmissionComponent},
-  {path: 'jobcode/management', component: JobCodeManagementComponent},
-  {path: 'jobcode/submission', component: JobCodeSubmissionComponent},
-  {path: 'timecard/approval', component: TimecardApprovalComponent},
-  {path: 'timecard/submission', component: TimecardSubmissionComponent},
+  {
+    path: 'home', 
+    children:[
+      {path: 'machinecode/management', component: MachineCodeManagementComponent},
+      {path: 'machinecode/submission', component: MachineCodeSubmissionComponent},
+      {path: 'jobcode/management', component: JobCodeManagementComponent},
+      {path: 'jobcode/submission', component: JobCodeSubmissionComponent},
+      {path: 'timecard/approval', component: TimecardApprovalComponent},
+      {path: 'timecard/submission', component: TimecardSubmissionComponent},
+    ], 
+    component: HomeComponent
+  },
   {path: '**', component: PageNotFoundComponent}
 ];
 
