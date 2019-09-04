@@ -1,15 +1,19 @@
+import { IEntry } from './entry';
+
 export interface ITimeSheet{
-    siteCode: number,
+    code: number,
     contractorName: string,
     date: Date,
-    entryCodes: [String]
+    entries: [IEntry],
+    approved: boolean,
 }
 
 export class TimeSheet implements ITimeSheet{
     constructor( 
-        public siteCode: number,
+        public code: number,
         public contractorName: string,
         public date: Date,
-        public entryCodes: [String]
+        public entries: [IEntry],
+        public approved: boolean,
     ){}
 }

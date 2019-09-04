@@ -1,11 +1,11 @@
-export interface Ientry {
+export interface IEntry {
     code: string;
-    hoursWorked: Number;
-    total: Number;
+    hoursWorked: number;
+    total: number;
     type: string
 }
 
-export class Entry implements Ientry {
+export class Entry implements IEntry {
     constructor(
         public code : string,
         public hoursWorked : number,

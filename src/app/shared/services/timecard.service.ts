@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ITimeCard } from '../models/timecard';
+import { ITimeSheet } from '../models/timesheet';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class TimeCardService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getTimeCardList(): Observable<ITimeCard[]>{
-    return this.httpClient.get<ITimeCard[]>(this._url.concat("/list"))
+  public getTimeCardList(): Observable<ITimeSheet[]>{
+    return this.httpClient.get<ITimeSheet[]>(this._url.concat("/list"))
     .pipe(catchError(this.errorHandler));
   }
-  public getTimeCardbyId(id: string): Observable<ITimeCard>{
-    return this.httpClient.get<ITimeCard>(this._url.concat("/"+id))
+  public getTimeCardbyId(id: string): Observable<ITimeSheet>{
+    return this.httpClient.get<ITimeSheet>(this._url.concat("/"+id))
     .pipe(catchError(this.errorHandler));
   }
 
