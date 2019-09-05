@@ -18,7 +18,8 @@ export const Apis = {
     signin: "/signin",
     create: "/create",
     getAll: "/list",
-    getbyId: "/:id",
+    getbyId: "/",
+    removeById: "/remove/"
 }
 
 export const defaultAdmin = {

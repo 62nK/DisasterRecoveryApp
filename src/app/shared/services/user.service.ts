@@ -24,7 +24,7 @@ export class UserService {
 
   public signIn(user: User): Observable<Authentication>{
     this._apiMethod = Apis.signin;
-    return this._httpClient.post<Authentication>(this._url+this._apiMethod, user);
+    return this._httpClient.post<Authentication>(this._url.concat(this._apiMethod), user);
   }
 
   public signOut(): void{

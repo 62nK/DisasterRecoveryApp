@@ -19,12 +19,7 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this._jobCodeService.getJobCodeList().subscribe(
-      (jobCodeList)=>{
-        this.jobCodeList = jobCodeList;
-      },
-      (error)=>this.errorMessage = error
-    );
+    this.getJobCodeList();
   }
 
   addNewJobCode(){
@@ -34,7 +29,23 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
     this._router.navigate(["/home/jobcode/submission"]);
   }
   removeJobCode(jobCode: JobCode){
-    console.log("pretend jobcode "+jobCode._id+" was removed");
+    this._jobCodeService.removeJobCode(jobCode).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getJobCodeList();
+      },
+    (error)=>{
+      console.log(error);
+    }
+    );
+  }
+  getJobCodeList(){
+    this._jobCodeService.getJobCodeList().subscribe(
+      (jobCodeList)=>{
+        this.jobCodeList = jobCodeList;
+      },
+      (error)=>this.errorMessage = error
+    );
   }
 
   ngDoCheck(): void {
