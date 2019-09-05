@@ -1,0 +1,17 @@
+.jobcode-submission{
+    background-color: white;
+}
+.component-title{
+    background-color: var(--maincolor);
+    padding: 10px;
+    margin: 10px 0; 
+    text-align: left;
+}
+.content{
+    display: flex;
+    width: 50%;
+}
+.form-group{
+    text-align: center;
+    display: table-cell;
+}

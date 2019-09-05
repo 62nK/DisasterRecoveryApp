@@ -1,1 +1,28 @@
-<p>job-code-submission works!</p>
+<div class="jobcode-submission">
+    <div class="component-title">{{componentTitle}}</div>
+
+    <!-- Job Code Submission Form -->
+    <div class="content">
+        <div class="labels">
+                <label>Job Code* </label><br>
+                <label>Description </label><br>
+                <label>Hourly Rate* </label><br>
+                <label>Max Hours per Day* </label><br>
+        </div>
+        <form [formGroup]="jobCodeSubmissionForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                <input type="text" formControlName="code" class="form-control"><br>
+                <div *ngIf="!jobCodeSubmissionForm.controls.code?.valid && jobCodeSubmissionForm.controls.touched"><small class="text-danger">Job Code is required</small></div>
+        
+                <input type="text" formControlName="description" class="form-control"><br>
+
+                $<input type="text" formControlName="hourlyRate" class="form-control"> /Hr.<br>
+
+                <input type="text" formControlName="maxDailyHours" class="form-control"><br>
+
+                </div>
+                <button class="btn btn-primary" [disabled]="!jobCodeSubmissionForm.valid" type="submit">Add Job Code</button>
+        </form>
+    </div>
+          <!-- <div><p class="text-danger">{{errorMessage}}</p></div> -->
+</div>
