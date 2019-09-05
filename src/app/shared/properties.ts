@@ -12,7 +12,7 @@ export const Apis = {
     userapis: "/userapis",
     machinecodeapis: "/machinecodeapis",
     jobcodeapis: "/jobcodeapis",
-    timecardapis: "/timecardapis",
+    timecardapis: "/timesheetapis",
 
     // Api methods
     signin: "/signin",

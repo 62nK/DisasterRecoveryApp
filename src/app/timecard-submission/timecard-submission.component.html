@@ -1,1 +1,39 @@
-<p>timecard-submission works!</p>
+<div class="timecard-submission">
+        <div class="component-title">{{componentTitle}}</div>
+    
+        <!-- Job Code Submission Form -->
+        <div class="content">
+            <div class="labels">
+                    <label>Site Code* </label><br>
+                    <label>Contractor Name* </label><br>
+                    <label>Date </label><br>
+            </div>
+            <form [formGroup]="timeCardSubmissionForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <input type="text" formControlName="code" class="form-control"><br>
+                        <input type="text" formControlName="contractorName" class="form-control"><br>
+                        <input type="date" formControlName="date" class="form-control"><br>
+                    </div>
+
+
+                    <!-- <div class="labor-entry">
+                        <div class="entry">
+                            <span>Labor Code</span>
+                            <span><input type="text" formControlName="laborCode" class="form-control"></span>
+                            <span>Hours Worked</span>
+                            <span><input type="number" formControlName="hoursWorked" class="form-control"></span>
+                            <span>Total</span></div>
+                            <span><input type="number" formControlName="total" class="form-control"></span>
+
+                    </div> -->
+
+
+
+                    <button class="btn btn-primary" [disabled]="!timeCardSubmissionForm.valid" type="submit">Submit</button>
+            </form>
+            <div class="validation">
+                    <small *ngIf="!timeCardSubmissionForm.controls.code?.valid" class="text-danger">Job Code is required</small>
+            </div>
+        </div>
+              <!-- <div><p class="text-danger">{{errorMessage}}</p></div> -->
+    </div>

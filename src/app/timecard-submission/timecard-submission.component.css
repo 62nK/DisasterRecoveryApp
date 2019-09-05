@@ -1,0 +1,41 @@
+.jobcode-submission{
+    background-color: white;
+}
+.component-title{
+    background-color: var(--maincolor);
+    padding: 10px;
+    margin: 10px 0; 
+    text-align: left;
+}
+.content{
+    display: flex;
+    width: 50%;
+    margin: 50px auto;
+}
+.labels{
+    width: 200px;
+}
+label{
+    line-height: 50px;
+}
+.form-group{
+    width: 200px;
+    text-align: center;
+    display: table-cell;
+    line-height: 50px;
+}
+.form-control{
+    padding: 10px auto;
+}
+.validation{
+    line-height: 50px;
+    color: crimson;
+    width: 200px;
+}
+.labor-entry{
+    width: 90%;
+    margin: 20px auto;
+}
+.entry{
+    width: 100%;
+}

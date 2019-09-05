@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-timecard-submission',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimecardSubmissionComponent implements OnInit {
 
-  constructor() { }
+  timeCardSubmissionForm: FormGroup;
+
+  constructor() { 
+    this.timeCardSubmissionForm = new FormGroup({
+      code: new FormControl(),
+      contractorName: new FormControl(),
+      date : new FormControl(),
+      laborEntry : new FormGroup({
+        entry: new FormControl(),
+      }),
+    });
+  }
 
   ngOnInit() {
   }

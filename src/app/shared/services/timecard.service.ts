@@ -19,7 +19,13 @@ export class TimeCardService {
   private _url: string;
   private _apiMethod: string;
 
-  constructor(private httpClient: HttpClient, private _userService: UserService) { }
+  constructor(private httpClient: HttpClient, private _userService: UserService) { 
+    this._baseUrl = APIserver.getUrl();
+    this._api = Apis.timecardapis;
+    this._url = this._baseUrl.concat(this._api);
+    this.auth0 = _userService.getAuthenticatedUser();
+    this.headers = new HttpHeaders();
+  }
 
   public getTimeCardList(): Observable<ITimeSheet[]>{
     this._apiMethod = Apis.getAll;
@@ -39,7 +45,6 @@ export class TimeCardService {
     return this.httpClient.post<Object>(this._url.concat(this._apiMethod), timeSheet, {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
-
 
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");

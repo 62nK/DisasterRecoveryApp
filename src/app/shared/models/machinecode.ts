@@ -3,6 +3,7 @@ export interface IMachineCode {
     description: string;
     hourlyRent: number;
     maxDailyHours: number;
+    _id?: string;
 }
 
 export class MachineCode implements IMachineCode{
@@ -10,5 +11,6 @@ export class MachineCode implements IMachineCode{
         public code :string,
         public description: string,
         public hourlyRent: number,
-        public maxDailyHours: number){}
+        public maxDailyHours: number,
+        public _id?: string){}
 }
