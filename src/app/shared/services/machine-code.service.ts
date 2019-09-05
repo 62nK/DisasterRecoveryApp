@@ -1,24 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { IMachineCode } from '../models/machinecode';
+import { APIserver, Apis } from '../properties';
+import { Authentication } from '../models/authentication';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MachineCodeService {
 
-  private _url: string = "http://localhost:3001/machinecodeapis";
+  private auth0: Authentication;
+  private headers: HttpHeaders;
+  private _baseUrl: string;
+  private _api: string;
+  private _url: string;
+  private _apiMethod: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private _userService: UserService) { 
+    this._baseUrl = APIserver.getUrl();
+    this._api = Apis.machinecodeapis;
+    this._url = this._baseUrl.concat(this._api);
+    this.auth0 = _userService.getAuthenticatedUser();
+    this.headers = new HttpHeaders();
+  }
 
   public getMachineCodeList(): Observable<IMachineCode[]>{
-    return this.httpClient.get<IMachineCode[]>(this._url.concat("/list"))
+    this._apiMethod = Apis.getAll;
+    this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
+    return this.httpClient.get<IMachineCode[]>(this._url.concat(this._apiMethod),  {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public getMachineCodebyId(id: string): Observable<IMachineCode>{
-    return this.httpClient.get<IMachineCode>(this._url.concat("/"+id))
+    this._apiMethod = Apis.getbyId;
+    this.headers = this.headers.set('authorization', 'Bearer' + this.auth0.token);
+    return this.httpClient.get<IMachineCode>(this._url.concat(this._apiMethod), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
 
