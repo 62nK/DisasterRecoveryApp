@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit, DoCheck {
   ngOnInit() {}
 
   ngDoCheck(){
-    // if(localStorage.getItem("auth0.token")==undefined)
-    //   this.router.navigate(["/login"]);
+    if(localStorage.getItem("auth0.token")==undefined)
+      this.router.navigate(["/login"]);
   }
 
 }

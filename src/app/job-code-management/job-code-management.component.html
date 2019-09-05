@@ -15,8 +15,8 @@
                         <tr *ngFor="let jobCode of jobCodeList; let i = index; let o = odd; let e = even">
                                 <td>{{jobCode.code}}</td>
                                 <td>{{jobCode.description}}</td>
-                                <td>{{jobCode.hourlyRate | currency : "USD" : "symbol" : 1.0-2}}</td>
-                                <td>{{jobCode.maxDailyHours}}</td>
+                                <td>{{jobCode.hourlyRate | currency : "USD" : "symbol" : "1.2-3"}} /Hr.</td>
+                                <td>{{jobCode.maxDailyHours}} Hr.</td>
                                 <td>Edit</td>
                                 <td>Remove</td>
                         </tr>

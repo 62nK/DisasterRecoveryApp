@@ -18,9 +18,6 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-  }
-
-  ngDoCheck(): void {
     this._jobCodeService.getJobCodeList().subscribe(
       (jobCodeList)=>{
         this.jobCodeList = jobCodeList;
@@ -29,4 +26,7 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
     );
   }
 
+  ngDoCheck(): void {
+    
+  }
 }

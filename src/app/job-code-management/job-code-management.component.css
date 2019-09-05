@@ -15,10 +15,10 @@ thead{
     color: white;
     background-color: var(--mainblack);
 }
-tr:hover {
+/* tr:hover {
     background-color: white;
     color: var(--mainblack);
-}
+} */
 td{
     padding: 4px;
 }
