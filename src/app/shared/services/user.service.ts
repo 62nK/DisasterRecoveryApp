@@ -27,6 +27,10 @@ export class UserService {
     return this._httpClient.post<Authentication>(this._url+this._apiMethod, user);
   }
 
+  public signOut(): void{
+    localStorage.removeItem("auth0.token");
+  }
+
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");
   }

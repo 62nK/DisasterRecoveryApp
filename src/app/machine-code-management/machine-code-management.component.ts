@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MachineCodeManagementComponent implements OnInit {
 
-  constructor() { }
+  componentTitle: string;
+
+  constructor() { 
+    this.componentTitle = "Machine Code Management";
+  }
 
   ngOnInit() {
   }

@@ -1,1 +1,25 @@
-<p>job-code-management works!</p>
+<div class="jobcode-management">
+        <div class="component-title">{{componentTitle}}</div>
+        <table>
+                <thead>
+                        <tr>
+                                <td>Job Code</td>
+                                <td>Description</td>
+                                <td>Hourly Rate</td>
+                                <td>Max Hours per Day</td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let jobCode of jobCodeList; let i = index; let o = odd; let e = even">
+                                <td>{{jobCode.code}}</td>
+                                <td>{{jobCode.description}}</td>
+                                <td>{{jobCode.hourlyRate | currency : "USD" : "symbol" : 1.0-2}}</td>
+                                <td>{{jobCode.maxDailyHours}}</td>
+                                <td>Edit</td>
+                                <td>Remove</td>
+                        </tr>
+                </tbody>
+        </table>
+</div>

@@ -1,0 +1,9 @@
+.content{
+    position: absolute;
+    top: 7.1%;
+    left: 20%;
+    bottom: 0%;
+    
+    overflow: hidden;
+    width: 80%;
+}

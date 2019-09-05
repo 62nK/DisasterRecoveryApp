@@ -1,0 +1,24 @@
+.machinecode-management{
+    background-color: white;
+}
+.component-title{
+    background-color: var(--maincolor);
+    padding: 10px;
+    margin: 10px 0; 
+    text-align: left;
+}
+table{
+    width: 80%;
+    margin: 50px auto;
+}
+thead{
+    color: white;
+    background-color: var(--mainblack);
+}
+tr:hover {
+    background-color: white;
+    color: var(--mainblack);
+}
+td{
+    padding: 4px;
+}

@@ -1,13 +1,19 @@
 .header-component{
-    background-color: grey;
+    background-color: var(--accents);
     width: 100%;
+    margin-top: 10px;
+    position: absolute;
+    display: table;
 }
+
 .page-title{
-    padding: 10px;
-    float: left;
+    display: table-cell;
     text-align: left;
+    padding: 15px 10px;
 }
 .authenticated-user{
-    padding: 10px;
+    display: table-cell;
     text-align: right;
+    padding: 15px 10px;
+
 }

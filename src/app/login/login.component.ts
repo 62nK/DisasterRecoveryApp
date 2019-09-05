@@ -20,13 +20,17 @@ export class LoginComponent implements OnInit {
   public logInForm: FormGroup;
 
   constructor(private _userService: UserService, private router: Router) {
-  }
-
-  ngOnInit() {
     this.logInForm = new FormGroup({
       username: new FormControl('', Validators.minLength(4)),
       password: new FormControl('', Validators.required),
     });
+  }
+
+  ngOnInit() {
+    if(localStorage.getItem("auth0.token")!=undefined)
+      this.router.navigate(["/home"]);
+    else
+      console.log("invalid token");
   }
 
   onSubmit() {
@@ -38,7 +42,7 @@ export class LoginComponent implements OnInit {
       (authentication)=>{
         this.errorMessage="";
         this._auth0 = new Authentication(authentication.token);
-        localStorage.setItem("auth0", this._auth0.token);
+        localStorage.setItem("auth0.token", this._auth0.token);
         this.router.navigate(["/home"]);
       },
       (httpErrorResponse)=>this.errorMessage = httpErrorResponse.error.message,
