@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ITimeSheet } from '../models/timesheet';
+import { ITimeSheet, TimeSheet } from '../models/timesheet';
 import { APIserver, Apis } from '../properties';
 import { Authentication } from '../models/authentication';
 import { UserService } from './user.service';
@@ -33,6 +33,13 @@ export class TimeCardService {
     return this.httpClient.get<ITimeSheet>(this._url.concat(this._apiMethod), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
+  public createTimeCard(timeSheet: TimeSheet): Observable<Object>{
+    this._apiMethod = Apis.create;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.post<Object>(this._url.concat(this._apiMethod), timeSheet, {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+
 
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IMachineCode } from '../models/machinecode';
+import { IMachineCode, MachineCode } from '../models/machinecode';
 import { APIserver, Apis } from '../properties';
 import { Authentication } from '../models/authentication';
 import { UserService } from './user.service';
@@ -37,6 +37,18 @@ export class MachineCodeService {
     this._apiMethod = Apis.getbyId;
     this.headers = this.headers.set('authorization', 'Bearer' + this.auth0.token);
     return this.httpClient.get<IMachineCode>(this._url.concat(this._apiMethod), {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+  public createMachineCode(machineCode: MachineCode): Observable<Object>{
+    this._apiMethod = Apis.create;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.post<Object>(this._url.concat(this._apiMethod), machineCode, {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+  public removeMachineCode(machineCode: MachineCode): Observable<Object>{
+    this._apiMethod = Apis.removeById;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.delete<Object>(this._url.concat(this._apiMethod).concat(machineCode._id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
 
