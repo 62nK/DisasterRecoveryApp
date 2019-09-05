@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   private _auth0: Authentication;
-
   componentTitle = "Disaster Recovery Application Project";
   formTitle = "Admin/User Log-In";
   errorMessage: string;
@@ -27,10 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem("auth0.token")!=undefined)
-      this.router.navigate(["/home"]);
-    else
-      console.log("invalid token");
+    if(localStorage.getItem("token")!=undefined)
+      this.router.navigate(["/home/timecard/approval"]);
   }
 
   onSubmit() {
@@ -41,9 +38,8 @@ export class LoginComponent implements OnInit {
     this._userService.signIn(user).subscribe(
       (authentication)=>{
         this.errorMessage="";
-        this._auth0 = new Authentication(authentication.token);
-        localStorage.setItem("auth0.token", this._auth0.token);
-        this.router.navigate(["/home"]);
+        localStorage.setItem("token", authentication.token);
+        this.router.navigate(["/home/timecard/approval"]);
       },
       (httpErrorResponse)=>this.errorMessage = httpErrorResponse.error.message,
     );

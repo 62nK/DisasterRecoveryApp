@@ -28,9 +28,12 @@ export class UserService {
   }
 
   public signOut(): void{
-    localStorage.removeItem("auth0.token");
+    localStorage.clear();
   }
 
+  public getAuthenticatedUser(): Authentication{
+    return new Authentication(localStorage.getItem("token"));
+  }
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");
   }

@@ -1,10 +1,14 @@
 export interface IAuthentication {
-    token: string;
-    message?: string;
+    token?: string;
+
+    isAdmin(): boolean;
 }
 
 export class Authentication implements IAuthentication{
     constructor(
-        public token: string,
-        public message?: string){}
+        public token: string){}
+
+    isAdmin(){
+        return true;
+    }
 }
