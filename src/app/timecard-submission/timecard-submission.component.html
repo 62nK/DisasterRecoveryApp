@@ -11,22 +11,24 @@
                         <label>Date </label>
                         <input type="date" formControlName="date" class="form-control">
                 </div>
-                <div class="form-group-entry">
+                <p class="form-array-title">Labor Entry</p>
+                <div class="form-array-entry">
                         <div formArrayName="laborEntries" *ngFor="let field of (timeCardSubmissionForm.get('laborEntries').controls); let i = index;">
-                                <div [formGroupName]="i">
+                                <div [formGroupName]="i" class="form-group-entry">
                                         <label>Site Code* </label>
                                         <input type="text" formControlName="code" class="form-control">
                                         <label>Hours Worked* </label>
                                         <input type="number" formControlName="hoursWorked" class="form-control">
                                         <label>Total </label>
-                                        <input type="number" formControlName="total" class="form-control"><br>
+                                        <input type="number" formControlName="total" class="form-control">
                                 </div>
                         </div>
-                        <button (click)="addLaborEntry()">click</button>
+                        <button (click)="addLaborEntry()" type="button">Add More</button>
                 </div>
-                <div class="form-group-entry">
+                <p class="form-array-title">Machine Entry</p>
+                <div class="form-array-entry">
                         <div formArrayName="machineEntries" *ngFor="let field of timeCardSubmissionForm.get('machineEntries').controls; let i = index;">
-                                <div [formGroupName]="i">
+                                <div [formGroupName]="i" class="form-group-entry">
                                         <label>Site Code* </label>
                                         <input type="text" formControlName="code" class="form-control">
                                         <label>Hours Used* </label>
@@ -35,7 +37,7 @@
                                         <input type="number" formControlName="total" class="form-control"><br>
                                 </div>
                         </div>
-                        <button (click)="addMachineEntry()">click</button>
+                        <button (click)="addMachineEntry()" type="button">Add More</button>
                 </div>
                 <button class="btn btn-primary" [disabled]="!timeCardSubmissionForm.valid" type="submit">Submit</button>
         </form>

@@ -41,11 +41,19 @@ form{
     padding: 20px;
     text-align: center;
 }
-.form-group-entry{
-    width: 100%;
+.form-array-title{
+    background-color: var(--accents);
+    padding: 10px;
+    width: 150px;
+    margin-bottom: -18px;
+}
+.form-array-entry{
     border: solid var(--accents);
     padding: 20px;
-
+    margin: 0 auto;
+}
+.form-group-entry{
+    line-height: 30px;
 }
 button{
     float: right;
