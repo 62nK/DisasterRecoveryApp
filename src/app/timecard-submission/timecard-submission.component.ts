@@ -31,6 +31,7 @@ export class TimecardSubmissionComponent implements OnInit {
   addLaborEntry() {
     const laborEntries = this.timeCardSubmissionForm.get('laborEntries') as FormArray;
     laborEntries.push(this.createLaborEntry());
+    console.log(laborEntries.controls);
   }
 
   createLaborEntry(): FormGroup {
@@ -45,9 +46,12 @@ export class TimecardSubmissionComponent implements OnInit {
       code: [],
       hoursUsed: [],
       total: []
-  });
-}
+    });
+  }
 
+  onSubmit(){
+    
+  }
   ngOnInit() {
   }
 
