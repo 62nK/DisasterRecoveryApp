@@ -9,20 +9,24 @@
 }
 .content{
     display: flex;
-    width: 50%;
+    width: 80%;
     margin: 50px auto;
 }
 .labels{
     width: 200px;
 }
 label{
-    line-height: 50px;
+    line-height: 30px;
+}
+form{
+    width: 90%;
+    margin: 20px auto;
 }
 .form-group{
     width: 200px;
     text-align: center;
     display: table-cell;
-    line-height: 50px;
+    line-height: 30px;
 }
 .form-control{
     padding: 10px auto;
@@ -32,10 +36,17 @@ label{
     color: crimson;
     width: 200px;
 }
-.labor-entry{
-    width: 90%;
-    margin: 20px auto;
-}
-.entry{
+.form-group-details{
     width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+.form-group-entry{
+    width: 100%;
+    border: solid var(--accents);
+    padding: 20px;
+
+}
+button{
+    float: right;
 }

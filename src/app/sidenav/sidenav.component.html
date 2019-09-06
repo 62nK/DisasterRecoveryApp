@@ -1,9 +1,9 @@
 <div class="sidenav-component">
 	<div class="menu">
 		<ul>
-		<li *ngIf="superUserView"><a href="home/jobcode/management" class="menu-route">Job Management</a></li>
-		<li *ngIf="superUserView"><a href="home/machinecode/management" class="menu-route">Machine Management</a></li>
-		<li><a href="home/timecard/approval" class="menu-route">TimeSheet Management</a></li>
+		<li><a routerLink="jobcode/management" class="menu-route" routerLinkActive="active">Job Management</a></li>
+		<li><a routerLink="machinecode/management" class="menu-route" routerLinkActive="active">Machine Management</a></li>
+		<li><a routerLink="timecard/approval" class="menu-route" routerLinkActive="active">TimeSheet Management</a></li>
 		</ul>
 	</div>
 </div>
