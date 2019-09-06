@@ -12,8 +12,8 @@
                         <input type="date" formControlName="date" class="form-control">
                 </div>
                 <div class="form-group-entry">
-                        <div formArrayName="laborEntries" *ngFor="let field of timeCardSubmissionForm.get('laborEntries').controls; let i = index;">
-                                <div formGroupName="i">
+                        <div formArrayName="laborEntries" *ngFor="let field of (timeCardSubmissionForm.get('laborEntries').controls); let i = index;">
+                                <div [formGroupName]="i">
                                         <label>Site Code* </label>
                                         <input type="text" formControlName="code" class="form-control">
                                         <label>Hours Worked* </label>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group-entry">
                         <div formArrayName="machineEntries" *ngFor="let field of timeCardSubmissionForm.get('machineEntries').controls; let i = index;">
-                                <div formGroupName="i">
+                                <div [formGroupName]="i">
                                         <label>Site Code* </label>
                                         <input type="text" formControlName="code" class="form-control">
                                         <label>Hours Used* </label>
