@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { IJobCode, JobCode } from '../models/job';
 import { APIserver, Apis } from '../properties';
 import { Authentication } from '../models/authentication';
-import { UserService } from './user.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,11 +20,11 @@ export class JobCodeService {
     private _apiMethod: string;
 
 
-    constructor(private httpClient: HttpClient, private _userService: UserService) { 
+    constructor(private httpClient: HttpClient, private _authenticationService: AuthenticationService) { 
       this._baseUrl = APIserver.getUrl();
       this._api = Apis.jobcodeapis;
       this._url = this._baseUrl.concat(this._api);
-      this.auth0 = _userService.getAuthenticatedUser();
+      this.auth0 = new Authentication(_authenticationService.getToken());
       this.headers = new HttpHeaders();
     }
   

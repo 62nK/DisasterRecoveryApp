@@ -6,6 +6,7 @@ import { IMachineCode, MachineCode } from '../models/machinecode';
 import { APIserver, Apis } from '../properties';
 import { Authentication } from '../models/authentication';
 import { UserService } from './user.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +20,11 @@ export class MachineCodeService {
   private _url: string;
   private _apiMethod: string;
 
-  constructor(private httpClient: HttpClient, private _userService: UserService) { 
+  constructor(private httpClient: HttpClient, private _authenticationService: AuthenticationService) { 
     this._baseUrl = APIserver.getUrl();
     this._api = Apis.machinecodeapis;
     this._url = this._baseUrl.concat(this._api);
-    this.auth0 = _userService.getAuthenticatedUser();
+    this.auth0 = new Authentication(_authenticationService.getToken());
     this.headers = new HttpHeaders();
   }
 

@@ -5,6 +5,7 @@ import { APIserver, Apis } from '../properties';
 import { Observable, throwError } from 'rxjs';
 import { Authentication } from '../models/authentication';
 import { catchError } from 'rxjs/operators';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
   private _url: string;
   private _apiMethod: string;
 
-  constructor(private _httpClient: HttpClient) { 
+  constructor(private _httpClient: HttpClient, private _authenticationService: AuthenticationService) { 
     this._baseUrl = APIserver.getUrl();
     this._api = Apis.userapis;
     this._url = this._baseUrl.concat(this._api);
@@ -28,12 +29,10 @@ export class UserService {
   }
 
   public signOut(): void{
-    localStorage.clear();
+    this._authenticationService.deauthorize();
+    console.log(this._authenticationService.getToken());
   }
 
-  public getAuthenticatedUser(): Authentication{
-    return new Authentication(localStorage.getItem("token"));
-  }
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");
   }

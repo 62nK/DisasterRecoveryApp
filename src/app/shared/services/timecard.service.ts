@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ITimeSheet, TimeSheet } from '../models/timesheet';
 import { APIserver, Apis } from '../properties';
 import { Authentication } from '../models/authentication';
-import { UserService } from './user.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +19,11 @@ export class TimeCardService {
   private _url: string;
   private _apiMethod: string;
 
-  constructor(private httpClient: HttpClient, private _userService: UserService) { 
+  constructor(private httpClient: HttpClient, private _authenticationService: AuthenticationService) { 
     this._baseUrl = APIserver.getUrl();
     this._api = Apis.timecardapis;
     this._url = this._baseUrl.concat(this._api);
-    this.auth0 = _userService.getAuthenticatedUser();
+    this.auth0 = new Authentication(_authenticationService.getToken());
     this.headers = new HttpHeaders();
   }
 
