@@ -18,15 +18,17 @@ export class AuthenticationService {
 
   public getAuthenticatedUser(): User{
     let token = localStorage.getItem('token');
-    let payload = token.split('\.')[1];
-    let s = atob(payload);
-    console.log(s);
-    let authenticatedUser: User = null;
+    let payload = atob(token.split('\.')[1]);
+    let authenticatedUser: User = JSON.parse(payload);
     return authenticatedUser;
   }
 
   public getToken(): string{
     return localStorage.getItem('token');
+  }
+
+  public isAuthenticated(){
+    return localStorage.getItem('token')!=undefined || localStorage.getItem('token')!=null;
   }
 
 }

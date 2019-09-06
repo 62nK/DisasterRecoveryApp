@@ -30,7 +30,6 @@ export class UserService {
 
   public signOut(): void{
     this._authenticationService.deauthorize();
-    console.log(this._authenticationService.getToken());
   }
 
   errorHandler(error: HttpErrorResponse){
