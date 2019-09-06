@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { User } from '../shared/models/user';
-import { Authentication } from '../shared/models/authentication';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/services/authentication.service';
@@ -28,7 +27,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this._authenticationService.getToken()){
       this.router.navigate(["/home/timecard/approval"]);
-      console.log(this._authenticationService.getToken());
     }
   }
 

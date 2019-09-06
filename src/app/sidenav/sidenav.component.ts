@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Authentication } from '../shared/models/authentication';
-import { UserService } from '../shared/services/user.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
+import { User, ADMIN } from '../shared/models/user'
 
 @Component({
   selector: 'app-sidenav',
@@ -9,12 +9,14 @@ import { UserService } from '../shared/services/user.service';
 })
 export class SidenavComponent implements OnInit {
 
-  public superUserView: boolean;
+  public superUserView: boolean = true;
 
-  constructor() { 
+  constructor(private _authenticationService: AuthenticationService) { 
+    this.superUserView = this._authenticationService.getAuthenticatedUser().role===ADMIN;
   }
 
   ngOnInit() {
+    this.superUserView = this._authenticationService.getAuthenticatedUser().role===ADMIN;
   }
 
 }

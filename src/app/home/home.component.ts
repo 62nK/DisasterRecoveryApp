@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { AuthenticationService } from '../shared/services/authentication.service';
@@ -8,16 +8,11 @@ import { AuthenticationService } from '../shared/services/authentication.service
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, DoCheck {
+export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private _authenticationService: AuthenticationService) { }
 
-  ngOnInit() {}
-
-  ngDoCheck(){
-    if(!this._authenticationService.getToken()){
-      this.router.navigate(["/login"]);
-    }
+  ngOnInit() {
   }
 
 }

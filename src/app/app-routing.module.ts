@@ -9,6 +9,8 @@ import { TimecardApprovalComponent } from './timecard-approval/timecard-approval
 import { TimecardSubmissionComponent } from './timecard-submission/timecard-submission.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { RoleGuard } from './guards/role.guard';
 
 
 const routes: Routes = [
@@ -17,14 +19,15 @@ const routes: Routes = [
   {
     path: 'home', 
     children:[
-      {path: 'machinecode/management', component: MachineCodeManagementComponent},
-      {path: 'machinecode/submission', component: MachineCodeSubmissionComponent},
-      {path: 'jobcode/management', component: JobCodeManagementComponent},
-      {path: 'jobcode/submission', component: JobCodeSubmissionComponent},
-      {path: 'timecard/approval', component: TimecardApprovalComponent},
-      {path: 'timecard/submission', component: TimecardSubmissionComponent},
+      {path: 'machinecode/management', component: MachineCodeManagementComponent, canActivate: [RoleGuard]},
+      {path: 'machinecode/submission', component: MachineCodeSubmissionComponent, canActivate: [RoleGuard]},
+      {path: 'jobcode/management', component: JobCodeManagementComponent, canActivate: [RoleGuard]},
+      {path: 'jobcode/submission', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
+      {path: 'timecard/approval', component: TimecardApprovalComponent, canActivate: [RoleGuard]},
+      {path: 'timecard/submission', component: TimecardSubmissionComponent, canActivate: [RoleGuard]},
     ], 
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthenticationGuard]
   },
   {path: '**', component: PageNotFoundComponent}
 ];

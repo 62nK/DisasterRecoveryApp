@@ -3,10 +3,13 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } fro
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { ADMIN, USER} from '../shared/models/user'
+
 @Injectable({
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
+
+  constructor(private _authenticationService: AuthenticationService){}
 
   canActivate(
     next: ActivatedRouteSnapshot,

@@ -30,7 +30,6 @@ export class TimecardApprovalComponent implements OnInit {
     this._timeCardService.getTimeCardList().subscribe(
       (timeCardList)=>{
         this.timeCardList = timeCardList;
-        console.log(this.timeCardList);
       },
       (error)=>this.errorMessage = error
     );

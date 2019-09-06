@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   appTitle: string;
   authenticatedUser: string;
 
-  constructor(private _userService: UserService) { 
+  constructor(private _userService: UserService, private _router: Router) { 
     this.authenticatedUser = "username(ADMIN)";
     this.appTitle = "Disaster Recovery Application: Timecard Submission";
     localStorage.getItem("auth0.token");
@@ -22,5 +23,6 @@ export class HeaderComponent implements OnInit {
 
   public signOut(){
     this._userService.signOut();
+    this._router.navigate(['/login']);
   }
 }
