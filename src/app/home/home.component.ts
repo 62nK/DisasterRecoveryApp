@@ -1,6 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,14 @@ import { UserService } from '../shared/services/user.service';
 })
 export class HomeComponent implements OnInit, DoCheck {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _authenticationService: AuthenticationService) { }
 
   ngOnInit() {}
 
   ngDoCheck(){
-    if(localStorage.getItem("token")==undefined)
+    if(!this._authenticationService.getToken()){
       this.router.navigate(["/login"]);
+    }
   }
 
 }

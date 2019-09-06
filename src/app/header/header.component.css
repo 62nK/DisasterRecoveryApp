@@ -17,3 +17,7 @@
     padding: 15px 10px;
 
 }
+img{
+    width: 30px;
+    display: table-cell;
+}

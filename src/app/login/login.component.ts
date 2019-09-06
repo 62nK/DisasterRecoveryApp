@@ -4,6 +4,7 @@ import { User } from '../shared/models/user';
 import { Authentication } from '../shared/models/authentication';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,12 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private _auth0: Authentication;
   componentTitle = "Disaster Recovery Application Project";
   formTitle = "Admin/User Log-In";
   errorMessage: string;
   public logInForm: FormGroup;
 
-  constructor(private _userService: UserService, private router: Router) {
+  constructor(private _userService: UserService, private _authenticationService: AuthenticationService, private router: Router) {
     this.logInForm = new FormGroup({
       username: new FormControl('', Validators.minLength(4)),
       password: new FormControl('', Validators.required),
@@ -26,8 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem("token")!=undefined)
+    if(this._authenticationService.getToken()){
       this.router.navigate(["/home/timecard/approval"]);
+      console.log(this._authenticationService.getToken());
+    }
   }
 
   onSubmit() {
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
     this._userService.signIn(user).subscribe(
       (authentication)=>{
         this.errorMessage="";
-        localStorage.setItem("token", authentication.token);
+        this._authenticationService.authorize(authentication.token);
         this.router.navigate(["/home/timecard/approval"]);
       },
       (httpErrorResponse)=>this.errorMessage = httpErrorResponse.error.message,

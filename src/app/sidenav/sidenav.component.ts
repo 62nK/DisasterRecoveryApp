@@ -9,12 +9,9 @@ import { UserService } from '../shared/services/user.service';
 })
 export class SidenavComponent implements OnInit {
 
-  private auth0: Authentication;
   public superUserView: boolean;
 
-  constructor(private _userService: UserService) { 
-    this.auth0 = _userService.getAuthenticatedUser();
-    this.superUserView = this.auth0.isAdmin();
+  constructor() { 
   }
 
   ngOnInit() {
