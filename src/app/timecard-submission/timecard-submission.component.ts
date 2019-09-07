@@ -66,14 +66,14 @@ export class TimecardSubmissionComponent implements OnInit {
   createLaborEntry(): FormGroup {
     return this._formBuilder.group({
         code: [],
-        hoursWorked: [],
+        hours: [],
         total: []
     });
   }
   createMachineEntry(): FormGroup {
     return this._formBuilder.group({
       code: [],
-      hoursUsed: [],
+      hours: [],
       total: []
     });
   }
@@ -84,17 +84,17 @@ export class TimecardSubmissionComponent implements OnInit {
     let hours: number = 0;
     this.timeCardSubmissionForm.value.laborEntries.forEach(entry => {
       let entryType = 'labor';
-      if(entry.code && entry.hoursWorked && entry.total && entryType){
-        entries.push(new Entry(entry.code, entry.hoursWorked, entry.total, entryType));
-        hours+=entry.hoursWorked;
+      if(entry.code && entry.hours && entry.total && entryType){
+        entries.push(new Entry(entry.code, entry.hours, entry.total, entryType));
+        hours+=entry.hours;
         total+=entry.total;
       }
     });
     this.timeCardSubmissionForm.value.machineEntries.forEach(entry => {
       let entryType = 'machine';
-      if(entry.code && entry.hoursUsed && entry.total && entryType){
-        entries.push(new Entry(entry.code, entry.hoursUsed, entry.total, entryType));
-        hours+=entry.hoursWorked;
+      if(entry.code && entry.hours && entry.total && entryType){
+        entries.push(new Entry(entry.code, entry.hours, entry.total, entryType));
+        hours+=entry.hours;
         total+=entry.total;
       }
     });
