@@ -80,22 +80,32 @@ export class TimecardSubmissionComponent implements OnInit {
 
   onSubmit(){
     let entries: Array<IEntry> = [];
+    let total: number = 0;
+    let hours: number = 0;
     this.timeCardSubmissionForm.value.laborEntries.forEach(entry => {
       let entryType = 'labor';
-      if(entry.code && entry.hoursWorked && entry.total && entryType)
+      if(entry.code && entry.hoursWorked && entry.total && entryType){
         entries.push(new Entry(entry.code, entry.hoursWorked, entry.total, entryType));
+        hours+=entry.hoursWorked;
+        total+=entry.total;
+      }
     });
     this.timeCardSubmissionForm.value.machineEntries.forEach(entry => {
       let entryType = 'machine';
-      if(entry.code && entry.hoursUsed && entry.total && entryType)
+      if(entry.code && entry.hoursUsed && entry.total && entryType){
         entries.push(new Entry(entry.code, entry.hoursUsed, entry.total, entryType));
+        hours+=entry.hoursWorked;
+        total+=entry.total;
+      }
     });
     let timeCard: TimeSheet = new TimeSheet(
       this.timeCardSubmissionForm.value.details.code,
       this.timeCardSubmissionForm.value.details.contractorName,
       this.timeCardSubmissionForm.value.details.date, 
       entries,
-      false
+      false,
+      hours,
+      total
     );
     this._timeCardService.createTimeCard(timeCard).subscribe(
       response=>{

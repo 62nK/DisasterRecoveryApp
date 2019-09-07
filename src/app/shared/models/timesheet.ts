@@ -6,6 +6,9 @@ export interface ITimeSheet{
     date: Date,
     entries: Array<IEntry>,
     approved: boolean,
+    hours: number,
+    total: number,
+    _id?: string,
 }
 
 export class TimeSheet implements ITimeSheet{
@@ -15,5 +18,8 @@ export class TimeSheet implements ITimeSheet{
         public date: Date,
         public entries: Array<IEntry>,
         public approved: boolean,
+        public hours: number,
+        public total: number,
+        public _id?: string,
     ){}
 }

@@ -35,6 +35,19 @@ export class TimecardApprovalComponent implements OnInit {
     );
   }
 
+  update(timeCard: TimeSheet){
+  }
+  remove(timeCard: TimeSheet){
+    this._timeCardService.removeTimeCard(timeCard).subscribe(
+      (response)=>{
+        console.log(response);
+        this.getTimeCardList();
+      },
+      (httpResponseError)=>{
+        console.log(httpResponseError);
+      }
+    );
+  }
   ngDoCheck(): void {
     
   }

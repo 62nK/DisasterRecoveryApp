@@ -46,6 +46,13 @@ export class TimeCardService {
     .pipe(catchError(this.errorHandler));
   }
 
+  public removeTimeCard(timeCard: TimeSheet): Observable<Object>{
+    this._apiMethod = Apis.removeById;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.delete<Object>(this._url.concat(this._apiMethod).concat(timeCard._id), {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse){
     return throwError(error.message || "Server Error");
   }
