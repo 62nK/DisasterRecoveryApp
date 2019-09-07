@@ -1,19 +1,19 @@
 import { IEntry } from './entry';
 
 export interface ITimeSheet{
-    code: number,
+    code: string,
     contractorName: string,
     date: Date,
-    entries: [IEntry],
+    entries: Array<IEntry>,
     approved: boolean,
 }
 
 export class TimeSheet implements ITimeSheet{
     constructor( 
-        public code: number,
+        public code: string,
         public contractorName: string,
         public date: Date,
-        public entries: [IEntry],
+        public entries: Array<IEntry>,
         public approved: boolean,
     ){}
 }

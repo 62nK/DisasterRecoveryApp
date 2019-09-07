@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, FormArrayName } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TimeSheet } from '../shared/models/timesheet';
+import { Entry, IEntry } from '../shared/models/entry';
+import { TimeCardService } from '../shared/services/timecard.service';
+import { JobCodeService } from '../shared/services/job-code.service';
+import { MachineCodeService } from '../shared/services/machine-code.service';
 
 @Component({
   selector: 'app-timecard-submission',
@@ -11,8 +16,12 @@ export class TimecardSubmissionComponent implements OnInit {
 
   componentTitle: string;
   timeCardSubmissionForm: FormGroup;
+  laborCodes: Array<string>;
+  machineCodes: Array<string>;
 
-  constructor(private _formBuilder: FormBuilder, private _router: Router) { 
+  constructor(private _formBuilder: FormBuilder, private _router: Router, private _timeCardService: TimeCardService, private _jobCodeService: JobCodeService, private _machineCodeService: MachineCodeService) { 
+    this.getLaborCodes();
+    this.getMachineCodes();
     this.componentTitle = "TimeSheet Approval";
     this.timeCardSubmissionForm = _formBuilder.group({
       details: _formBuilder.group({
@@ -23,6 +32,25 @@ export class TimecardSubmissionComponent implements OnInit {
       laborEntries: this._formBuilder.array([this.createLaborEntry()]),
       machineEntries: this._formBuilder.array([this.createMachineEntry()])
     });
+  }
+
+  getLaborCodes(){
+    this.laborCodes = [];
+    this._jobCodeService.getJobCodeList().subscribe(
+      (jobCodeList)=>jobCodeList.forEach(element => {
+        this.laborCodes.push(element.code);
+      }),
+      (httpResponseError)=>console.log(httpResponseError),
+    );
+  }
+  getMachineCodes(){
+    this.machineCodes = [];
+    this._machineCodeService.getMachineCodeList().subscribe(
+      (machineCodeList)=>machineCodeList.forEach(element => {
+        this.machineCodes.push(element.code);
+      }),
+      (httpResponseError)=>console.log(httpResponseError),
+    );
   }
 
   addMachineEntry() {
@@ -37,7 +65,7 @@ export class TimecardSubmissionComponent implements OnInit {
 
   createLaborEntry(): FormGroup {
     return this._formBuilder.group({
-        code: [],
+        code: [this.laborCodes],
         hoursWorked: [],
         total: []
     });
@@ -51,20 +79,33 @@ export class TimecardSubmissionComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.timeCardSubmissionForm.value.details.code);
-    console.log(this.timeCardSubmissionForm.value.details.contractorName);
-    console.log(this.timeCardSubmissionForm.value.details.date);
+    let entries: Array<IEntry> = [];
     this.timeCardSubmissionForm.value.laborEntries.forEach(entry => {
-      if(entry.code){
-        console.log(entry.code);
-      }
-      if(entry.hoursWorked){
-        console.log(entry.hoursWorked);
-      }
-      if(entry.total){
-        console.log(entry.total);
-      }
+      let entryType = 'labor';
+      if(entry)
+        entries.push(new Entry(entry.code, entry.hoursWorked, entry.total, entryType));
     });
+    this.timeCardSubmissionForm.value.machineEntries.forEach(entry => {
+      let entryType = 'machine';
+      if(entry)
+        entries.push(new Entry(entry.code, entry.hoursUsed, entry.total, entryType));
+    });
+    let timeCard: TimeSheet = new TimeSheet(
+      this.timeCardSubmissionForm.value.details.code,
+      this.timeCardSubmissionForm.value.details.contractorName,
+      this.timeCardSubmissionForm.value.details.date, 
+      entries,
+      false
+    );
+    this._timeCardService.createTimeCard(timeCard).subscribe(
+      subscribe=>{
+        console.log(subscribe);
+      },
+      httpErrorResponse=>{
+        console.log(httpErrorResponse);
+        
+      }
+    );
     // this._router.navigate(['home/timecard/approval']);
   }
   ngOnInit() {

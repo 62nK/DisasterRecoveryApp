@@ -16,7 +16,11 @@
                         <div formArrayName="laborEntries" *ngFor="let field of (timeCardSubmissionForm.get('laborEntries').controls); let i = index;">
                                 <div [formGroupName]="i" class="form-group-entry">
                                         <label>Site Code* </label>
-                                        <input type="text" formControlName="code" class="form-control">
+                                        <select formControlName="code" class="form-control">
+                                                <option *ngFor="let lc of laborCodes" [ngValue]="lc">
+                                                        {{lc}}
+                                                </option>
+                                        </select>
                                         <label>Hours Worked* </label>
                                         <input type="number" formControlName="hoursWorked" class="form-control">
                                         <label>Total </label>
@@ -30,7 +34,11 @@
                         <div formArrayName="machineEntries" *ngFor="let field of timeCardSubmissionForm.get('machineEntries').controls; let i = index;">
                                 <div [formGroupName]="i" class="form-group-entry">
                                         <label>Site Code* </label>
-                                        <input type="text" formControlName="code" class="form-control">
+                                        <select formControlName="code" class="form-control">
+                                                        <option *ngFor="let mc of machineCodes" [ngValue]="mc">
+                                                                {{mc}}
+                                                        </option>
+                                        </select>
                                         <label>Hours Used* </label>
                                         <input type="number" formControlName="hoursUsed" class="form-control">
                                         <label>Total </label>

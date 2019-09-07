@@ -12,7 +12,6 @@ export class SidenavComponent implements OnInit {
   public superUserView: boolean = true;
 
   constructor(private _authenticationService: AuthenticationService) { 
-    this.superUserView = this._authenticationService.getAuthenticatedUser().role===ADMIN;
   }
 
   ngOnInit() {
