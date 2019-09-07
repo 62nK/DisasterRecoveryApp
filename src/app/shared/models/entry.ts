@@ -1,6 +1,6 @@
 export interface IEntry {
     code: string;
-    hoursWorked: number;
+    hours: number;
     total: number;
     type: string
 }
@@ -8,7 +8,7 @@ export interface IEntry {
 export class Entry implements IEntry {
     constructor(
         public code : string,
-        public hoursWorked : number,
+        public hours : number,
         public total : number,
         public type : string
     ){}

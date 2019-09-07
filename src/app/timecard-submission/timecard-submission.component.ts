@@ -65,7 +65,7 @@ export class TimecardSubmissionComponent implements OnInit {
 
   createLaborEntry(): FormGroup {
     return this._formBuilder.group({
-        code: [this.laborCodes],
+        code: [],
         hoursWorked: [],
         total: []
     });
@@ -82,12 +82,12 @@ export class TimecardSubmissionComponent implements OnInit {
     let entries: Array<IEntry> = [];
     this.timeCardSubmissionForm.value.laborEntries.forEach(entry => {
       let entryType = 'labor';
-      if(entry)
+      if(entry.code && entry.hoursWorked && entry.total && entryType)
         entries.push(new Entry(entry.code, entry.hoursWorked, entry.total, entryType));
     });
     this.timeCardSubmissionForm.value.machineEntries.forEach(entry => {
       let entryType = 'machine';
-      if(entry)
+      if(entry.code && entry.hoursUsed && entry.total && entryType)
         entries.push(new Entry(entry.code, entry.hoursUsed, entry.total, entryType));
     });
     let timeCard: TimeSheet = new TimeSheet(
@@ -98,15 +98,14 @@ export class TimecardSubmissionComponent implements OnInit {
       false
     );
     this._timeCardService.createTimeCard(timeCard).subscribe(
-      subscribe=>{
-        console.log(subscribe);
+      response=>{
+        console.log(response);
       },
-      httpErrorResponse=>{
+      (httpErrorResponse)=>{
         console.log(httpErrorResponse);
-        
       }
     );
-    // this._router.navigate(['home/timecard/approval']);
+    this._router.navigate(['home/timecard/approval']);
   }
   ngOnInit() {
   }
