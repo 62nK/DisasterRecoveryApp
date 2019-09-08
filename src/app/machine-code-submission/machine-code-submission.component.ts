@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MachineCodeService } from '../shared/services/machine-code.service';
 import { MachineCode } from '../shared/models/machinecode';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -15,6 +15,8 @@ export class MachineCodeSubmissionComponent implements OnInit {
   componentTitle: string;
   machineCodeSubmissionForm: FormGroup;
   message: string;
+  machineCodeToUpdate: MachineCode;
+  update: boolean;
 
   constructor(private _machineCodeService: MachineCodeService, private router: Router) {
     this.componentTitle = "Machine Code Submission";
@@ -27,18 +29,32 @@ export class MachineCodeSubmissionComponent implements OnInit {
    }
 
    onSubmit(){
-     let machineCode = new MachineCode(
+     if(this.update){
+       this.machineCodeToUpdate.code = this.machineCodeSubmissionForm.value.code,
+       this.machineCodeToUpdate.description = this.machineCodeSubmissionForm.value.description,
+       this.machineCodeToUpdate.hourlyRent = this.machineCodeSubmissionForm.value.hourlyRent,
+       this.machineCodeToUpdate.maxDailyHours = this.machineCodeSubmissionForm.value.maxDailyHours,
+       this._machineCodeService.updateMachineCode(this.machineCodeToUpdate).subscribe(
+         (response)=>{
+           this.router.navigate({"home/machinecode/management"});
+         },
+         (error)=>console.log(error)
+       );
+     }
+     else{ 
+       let machineCode = new MachineCode(
        this.machineCodeSubmissionForm.value.code,
        this.machineCodeSubmissionForm.value.description,
        this.machineCodeSubmissionForm.value.hourlyRent,
        this.machineCodeSubmissionForm.value.maxDailyHours
      );
-     this._machineCodeService.createMachineCode(machineCode).subscribe(
+       this._machineCodeService.createMachineCode(machineCode).subscribe(
        (response)=>{
          this.router.navigate(["home/machinecode/management"]);
        },
        (error)=>console.log(error)
      );
+    }
    }
   ngOnInit() {
   }
