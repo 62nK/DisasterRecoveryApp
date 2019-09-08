@@ -25,11 +25,9 @@ export class MachineCodeManagementComponent implements OnInit, DoCheck {
   addNewMachineCode(){
     this._router.navigate(["home/machinecode/submission"]);
   }
-
   updateMachineCode(machineCode: MachineCode){
     this._router.navigate(["home/machinecode/submission"]);
   }
-
   removeMachineCode(machineCode: MachineCode){
     this._machineCodeService.removeMachineCode(machineCode).subscribe(
       (response)=>{
@@ -41,7 +39,6 @@ export class MachineCodeManagementComponent implements OnInit, DoCheck {
       }
     );
   }
-
   getMachineCodeList(){
     this._machineCodeService.getMachineCodeList().subscribe(
       (machineCodeList)=>{
