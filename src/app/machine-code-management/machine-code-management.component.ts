@@ -26,7 +26,7 @@ export class MachineCodeManagementComponent implements OnInit, DoCheck {
     this._router.navigate(["home/machinecode/submission"]);
   }
 
-  updateNewMachineCode(machineCode: MachineCode){
+  updateMachineCode(machineCode: MachineCode){
     this._router.navigate(["home/machinecode/submission"]);
   }
 

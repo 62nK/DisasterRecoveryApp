@@ -21,11 +21,12 @@
                                 <td>{{machineCode.description}}</td>
                                 <td>{{machineCode.hourlyRent | currency : "USD" : "symbol" : 1.0-2}}</td>
                                 <td>{{machineCode.maxDailyHours}}</td>
-                                <td>Edit</td>
-                                <td>Remove</td>
+                                <td (click)="updateMachineCode(machineCode)">Edit</td>
+                                <td (click)="removeMachineCode(machineCode)">Remove</td>
                         </tr>
                 </tbody>
-         </table></div>
+         </table>
+        </div>
     
        
 
