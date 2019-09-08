@@ -21,6 +21,7 @@ const routes: Routes = [
     children:[
       {path: 'machinecode/management', component: MachineCodeManagementComponent, canActivate: [RoleGuard]},
       {path: 'machinecode/submission', component: MachineCodeSubmissionComponent, canActivate: [RoleGuard]},
+      {path: 'machinecode/submission/:id', component: MachineCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/management', component: JobCodeManagementComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/submission', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/submission/:id', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},

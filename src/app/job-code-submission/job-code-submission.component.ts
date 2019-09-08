@@ -61,12 +61,10 @@ export class JobCodeSubmissionComponent implements OnInit, OnDestroy {
         selectedId = params.get('id');
         if(selectedId){
           this.update = true;
-          console.log("requesting id: "+selectedId);    
           this._jobCodeService.getJobCodeById(selectedId).subscribe(
             (jobCode)=>{
               this.jobCodeToUpdate=jobCode;
               this.jobCodeSubmissionForm.patchValue(jobCode);
-              console.log(jobCode);
             },
           );
         }
