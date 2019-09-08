@@ -49,6 +49,6 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck(): void {
-    
+   
   }
 }
