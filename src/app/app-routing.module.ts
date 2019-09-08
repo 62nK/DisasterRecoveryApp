@@ -14,7 +14,7 @@ import { RoleGuard } from './guards/role.guard';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home/machinecode/management', pathMatch: 'full'},
+  {path: '', redirectTo: 'home/timecard/approval', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {
     path: 'home', 
@@ -24,8 +24,8 @@ const routes: Routes = [
       {path: 'jobcode/management', component: JobCodeManagementComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/submission', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/submission/:id', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
-      {path: 'timecard/approval', component: TimecardApprovalComponent, canActivate: [RoleGuard]},
-      {path: 'timecard/submission', component: TimecardSubmissionComponent, canActivate: [RoleGuard]},
+      {path: 'timecard/approval', component: TimecardApprovalComponent},
+      {path: 'timecard/submission', component: TimecardSubmissionComponent},
     ], 
     component: HomeComponent,
     canActivate: [AuthenticationGuard]
