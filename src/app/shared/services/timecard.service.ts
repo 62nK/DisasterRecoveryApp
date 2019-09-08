@@ -33,10 +33,10 @@ export class TimeCardService {
     return this.httpClient.get<ITimeSheet[]>(this._url.concat(this._apiMethod), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
-  public getTimeCardbyId(id: string): Observable<ITimeSheet>{
+  public getTimeCardbyId(_id: string): Observable<ITimeSheet>{
     this._apiMethod = Apis.getbyId;
     this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
-    return this.httpClient.get<ITimeSheet>(this._url.concat(this._apiMethod), {headers: this.headers})
+    return this.httpClient.get<ITimeSheet>(this._url.concat(this._apiMethod).concat(_id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public createTimeCard(timeSheet: TimeSheet): Observable<Object>{
@@ -46,10 +46,17 @@ export class TimeCardService {
     .pipe(catchError(this.errorHandler));
   }
 
-  public removeTimeCard(timeCard: TimeSheet): Observable<Object>{
+  public updateTimeCard(timeCard: TimeSheet): Observable<TimeSheet>{
+    this._apiMethod = Apis.update;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.put<TimeSheet>(this._url.concat(this._apiMethod).concat(timeCard._id), timeCard, {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+
+  public removeTimeCard(timeCard: TimeSheet): Observable<TimeSheet>{
     this._apiMethod = Apis.removeById;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
-    return this.httpClient.delete<Object>(this._url.concat(this._apiMethod).concat(timeCard._id), {headers: this.headers})
+    return this.httpClient.delete<TimeSheet>(this._url.concat(this._apiMethod).concat(timeCard._id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
 

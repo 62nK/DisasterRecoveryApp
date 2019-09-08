@@ -34,7 +34,7 @@ export class MachineCodeService {
     return this.httpClient.get<IMachineCode[]>(this._url.concat(this._apiMethod),  {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
-  public getMachineCodebyId(id: string): Observable<IMachineCode>{
+  public getMachineCodebyId(_id: string): Observable<IMachineCode>{
     this._apiMethod = Apis.getbyId;
     this.headers = this.headers.set('authorization', 'Bearer' + this.auth0.token);
     return this.httpClient.get<IMachineCode>(this._url.concat(this._apiMethod), {headers: this.headers})
@@ -46,10 +46,16 @@ export class MachineCodeService {
     return this.httpClient.post<Object>(this._url.concat(this._apiMethod), machineCode, {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
-  public removeMachineCode(machineCode: MachineCode): Observable<Object>{
+  public updateMachineCode(machineCode: MachineCode): Observable<MachineCode>{
+    this._apiMethod = Apis.update;
+    this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+    return this.httpClient.put<MachineCode>(this._url.concat(this._apiMethod).concat(machineCode._id), machineCode, {headers: this.headers})
+    .pipe(catchError(this.errorHandler));
+  }
+  public removeMachineCode(machineCode: MachineCode): Observable<MachineCode>{
     this._apiMethod = Apis.removeById;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
-    return this.httpClient.delete<Object>(this._url.concat(this._apiMethod).concat(machineCode._id), {headers: this.headers})
+    return this.httpClient.delete<MachineCode>(this._url.concat(this._apiMethod).concat(machineCode._id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
 
