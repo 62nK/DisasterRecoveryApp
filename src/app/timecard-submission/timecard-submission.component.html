@@ -35,9 +35,9 @@
                                 <div [formGroupName]="i" class="form-group-entry">
                                         <label>Site Code* </label>
                                         <select formControlName="code" class="form-control">
-                                                        <option *ngFor="let mc of machineCodes" [ngValue]="mc">
-                                                                {{mc}}
-                                                        </option>
+                                                <option *ngFor="let mc of machineCodes" [ngValue]="mc">
+                                                        {{mc}}
+                                                </option>
                                         </select>
                                         <label>Hours Used* </label>
                                         <input type="number" formControlName="hours" class="form-control">
@@ -47,6 +47,7 @@
                         </div>
                         <button (click)="addMachineEntry()" type="button">Add More</button>
                 </div>
+                <button type="button" (click)="cancelSubmission()">Cancel</button>
                 <button class="btn btn-primary" [disabled]="!timeCardSubmissionForm.valid" type="submit">Submit</button>
         </form>
             <!-- <div class="validation">

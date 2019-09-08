@@ -119,5 +119,8 @@ export class TimecardSubmissionComponent implements OnInit {
   }
   ngOnInit() {
   }
+  cancelSubmission(){
+    this._router.navigate(['home/timecard/approval']);
+  }
 
 }

@@ -77,5 +77,8 @@ export class JobCodeSubmissionComponent implements OnInit, OnDestroy {
     this.update = false;
     this.jobCodeToUpdate = null;
   }
+  cancelSubmission(){
+    this.router.navigate(['home/jobcode/management']);
+  }
 
 }

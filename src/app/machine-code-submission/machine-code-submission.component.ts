@@ -66,7 +66,6 @@ export class MachineCodeSubmissionComponent implements OnInit {
             (machineCode)=>{
               this.machineCodeToUpdate=machineCode;
               this.machineCodeSubmissionForm.patchValue(machineCode);
-              console.log(machineCode);
             },
           );
         }
@@ -74,6 +73,9 @@ export class MachineCodeSubmissionComponent implements OnInit {
           this.update = false;
         }
     });
+  }
+  cancelSubmission(){
+    this._router.navigate(['home/machinecode/management']);
   }
 
 }
