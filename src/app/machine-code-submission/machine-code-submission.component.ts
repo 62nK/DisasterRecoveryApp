@@ -59,7 +59,7 @@ export class MachineCodeSubmissionComponent implements OnInit {
     let selectedId;
     this._route.paramMap.subscribe(
       (params: ParamMap) => {
-        selectedId = params.get('id');
+        selectedId = params.get('id');        
         if(selectedId){
           this.update = true;
           this._machineCodeService.getMachineCodebyId(selectedId).subscribe(
@@ -67,7 +67,6 @@ export class MachineCodeSubmissionComponent implements OnInit {
               this.machineCodeToUpdate=machineCode;
               this.machineCodeSubmissionForm.patchValue(machineCode);
               console.log(machineCode);
-              
             },
           );
         }
