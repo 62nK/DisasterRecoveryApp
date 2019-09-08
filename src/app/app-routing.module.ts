@@ -23,6 +23,7 @@ const routes: Routes = [
       {path: 'machinecode/submission', component: MachineCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/management', component: JobCodeManagementComponent, canActivate: [RoleGuard]},
       {path: 'jobcode/submission', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
+      {path: 'jobcode/submission/:id', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'timecard/approval', component: TimecardApprovalComponent, canActivate: [RoleGuard]},
       {path: 'timecard/submission', component: TimecardSubmissionComponent, canActivate: [RoleGuard]},
     ], 

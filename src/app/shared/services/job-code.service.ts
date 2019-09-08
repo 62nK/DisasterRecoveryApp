@@ -34,16 +34,22 @@ export class JobCodeService {
       return this.httpClient.get<IJobCode[]>(this._url.concat(this._apiMethod), {headers: this.headers})
       .pipe(catchError(this.errorHandler));
     }
-    public getJobCodeById(id: string): Observable<IJobCode>{
+    public getJobCodeById(_id: string): Observable<IJobCode>{
       this._apiMethod = Apis.getbyId;
-      this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
-      return this.httpClient.get<IJobCode>(this._url.concat(this._apiMethod), {headers: this.headers})
+      this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);      
+      return this.httpClient.get<IJobCode>(this._url.concat(this._apiMethod).concat(_id), {headers: this.headers})
       .pipe(catchError(this.errorHandler));
     }
     public createJobCode(jobCode: JobCode): Observable<Object>{
       this._apiMethod = Apis.create;
       this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
       return this.httpClient.post<Object>(this._url.concat(this._apiMethod), jobCode, {headers: this.headers})
+      .pipe(catchError(this.errorHandler));
+    }
+    public updateJobCode(jobCode: JobCode): Observable<Object>{
+      this._apiMethod = Apis.update;
+      this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
+      return this.httpClient.put<Object>(this._url.concat(this._apiMethod).concat(jobCode._id), jobCode, {headers: this.headers})
       .pipe(catchError(this.errorHandler));
     }
     public removeJobCode(jobCode: JobCode): Observable<Object>{

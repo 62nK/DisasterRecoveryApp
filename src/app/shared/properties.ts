@@ -17,6 +17,7 @@ export const Apis = {
     // Api methods
     signin: "/signin",
     create: "/create",
+    update: '/update/',
     getAll: "/list",
     getbyId: "/",
     removeById: "/remove/"

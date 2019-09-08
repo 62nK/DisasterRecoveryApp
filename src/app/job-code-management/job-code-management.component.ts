@@ -26,7 +26,7 @@ export class JobCodeManagementComponent implements OnInit, DoCheck {
     this._router.navigate(["/home/jobcode/submission"]);
   }
   updateJobCode(jobCode: JobCode){
-    this._router.navigate(["/home/jobcode/submission"]);
+    this._router.navigate(["/home/jobcode/submission", jobCode._id]);
   }
   removeJobCode(jobCode: JobCode){
     this._jobCodeService.removeJobCode(jobCode).subscribe(
