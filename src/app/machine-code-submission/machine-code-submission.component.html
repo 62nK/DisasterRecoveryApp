@@ -1,1 +1,31 @@
-<p>machine-code-submission works!</p>
+<div class="machinecode-submission">
+    <div class="component-title">{{componentTitle}}</div>
+
+    <!-- Machine Code Submission Form -->
+    <div class="content">
+        <div class="labels">
+                <label>Machine Code* </label><br>
+                <label>Description </label><br>
+                <label>Hourly Rent* </label><br>
+                <label>Max Hours per Day* </label><br>
+        </div>
+        <form [formGroup]="machineCodeSubmissionForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                <input type="text" formControlName="code" class="form-control">
+                <br>
+        
+                <input type="text" formControlName="description" class="form-control"><br>
+
+                <input type="number" step="0.01" min="0" formControlName="hourlyRent" class="form-control" placeholder="$/Hr."><br>
+
+                <input type="number" max="24" formControlName="maxDailyHours" class="form-control" placeholder="Hr."><br>
+
+                </div>
+                <button class="btn btn-primary" [disabled]="!machineCodeSubmissionForm.valid" type="submit">Add Machine Code</button>
+        </form>
+        <div class="validation">
+                <small *ngIf="machineCodeSubmissionForm.controls.code?.valid" class="text-danger">Machine Code is required</small>
+        </div>
+    </div>
+          <!-- <div><p class="text-danger">{{errorMessage}}</p></div> -->
+</div>

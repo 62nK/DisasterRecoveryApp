@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MachineCodeService } from '../shared/services/machine-code.service';
 import { MachineCode } from '../shared/models/machinecode';
 import { Router } from '@angular/router';
-import { JobCodeService } from '../shared/services/job-code.service';
+
 
 @Component({
   selector: 'app-machine-code-submission',
