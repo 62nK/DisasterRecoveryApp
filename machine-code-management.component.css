@@ -1,0 +1,31 @@
+.machinecode-management{
+    background-color: white;
+}
+.component-title{
+    background-color: var(--maincolor);
+    padding: 10px;
+    margin: 10px 0; 
+    text-align: left;
+}
+.list{
+    margin: 50px auto;
+    width:80%;
+}
+p{ 
+    text-align: right;
+}
+table{
+    width: 100%;
+}
+thead{
+    color: white;
+    background-color: var(--mainblack);
+}
+
+.list2:hover{
+    color:gray;
+}
+
+td{
+    padding: 4px;
+}
