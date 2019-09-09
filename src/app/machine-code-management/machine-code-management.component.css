@@ -11,6 +11,9 @@
     margin: 50px auto;
     width:80%;
 }
+.list2:hover{
+    color: grey;
+}
 p{ 
     text-align: right;
 }
