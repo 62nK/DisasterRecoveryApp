@@ -30,3 +30,6 @@ thead{
 td{
     padding: 4px;
 }
+.list2:hover{
+    color: gray;
+}
