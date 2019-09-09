@@ -4,7 +4,6 @@ import { User } from '../models/user';
 import { APIserver, Apis } from '../properties';
 import { Observable, throwError } from 'rxjs';
 import { Authentication } from '../models/authentication';
-import { catchError } from 'rxjs/operators';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({

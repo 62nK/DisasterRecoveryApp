@@ -23,23 +23,25 @@ export class TimeCardService {
     this._baseUrl = APIserver.getUrl();
     this._api = Apis.timecardapis;
     this._url = this._baseUrl.concat(this._api);
-    this.auth0 = new Authentication(_authenticationService.getToken());
     this.headers = new HttpHeaders();
   }
 
   public getTimeCardList(): Observable<ITimeSheet[]>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.getAll;
     this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
     return this.httpClient.get<ITimeSheet[]>(this._url.concat(this._apiMethod), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public getTimeCardbyId(_id: string): Observable<ITimeSheet>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.getbyId;
     this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
     return this.httpClient.get<ITimeSheet>(this._url.concat(this._apiMethod).concat(_id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public createTimeCard(timeSheet: TimeSheet): Observable<Object>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.create;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
     return this.httpClient.post<Object>(this._url.concat(this._apiMethod), timeSheet, {headers: this.headers})
@@ -47,6 +49,7 @@ export class TimeCardService {
   }
 
   public updateTimeCard(timeCard: TimeSheet): Observable<TimeSheet>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.update;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
     return this.httpClient.put<TimeSheet>(this._url.concat(this._apiMethod).concat(timeCard._id), timeCard, {headers: this.headers})
@@ -54,6 +57,7 @@ export class TimeCardService {
   }
 
   public removeTimeCard(timeCard: TimeSheet): Observable<TimeSheet>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.removeById;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
     return this.httpClient.delete<TimeSheet>(this._url.concat(this._apiMethod).concat(timeCard._id), {headers: this.headers})

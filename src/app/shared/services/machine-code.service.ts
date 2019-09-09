@@ -29,24 +29,28 @@ export class MachineCodeService {
   }
 
   public getMachineCodeList(): Observable<MachineCode[]>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.getAll;
     this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
     return this.httpClient.get<MachineCode[]>(this._url.concat(this._apiMethod),  {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public getMachineCodebyId(_id: string): Observable<MachineCode>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.getbyId;
     this.headers = this.headers.set('authorization', 'Bearer ' + this.auth0.token);
     return this.httpClient.get<MachineCode>(this._url.concat(this._apiMethod).concat(_id), {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public createMachineCode(machineCode: MachineCode): Observable<Object>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.create;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
     return this.httpClient.post<Object>(this._url.concat(this._apiMethod), machineCode, {headers: this.headers})
     .pipe(catchError(this.errorHandler));
   }
   public updateMachineCode(machineCode: MachineCode): Observable<MachineCode>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.update;
     console.log(this._url.concat(this._apiMethod).concat(machineCode._id));
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
@@ -54,6 +58,7 @@ export class MachineCodeService {
     .pipe(catchError(this.errorHandler));
   }
   public removeMachineCode(machineCode: MachineCode): Observable<MachineCode>{
+    this.auth0 = new Authentication(this._authenticationService.getToken());
     this._apiMethod = Apis.removeById;
     this.headers = this.headers.set('authorization', 'Bearer '+this.auth0.token);
     return this.httpClient.delete<MachineCode>(this._url.concat(this._apiMethod).concat(machineCode._id), {headers: this.headers})

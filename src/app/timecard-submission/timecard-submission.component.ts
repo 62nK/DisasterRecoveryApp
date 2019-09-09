@@ -6,7 +6,6 @@ import { Entry, IEntry } from '../shared/models/entry';
 import { TimeCardService } from '../shared/services/timecard.service';
 import { JobCodeService } from '../shared/services/job-code.service';
 import { MachineCodeService } from '../shared/services/machine-code.service';
-import { DatePipe } from '../shared/pipes/date.pipe';
 
 @Component({
   selector: 'app-timecard-submission',
