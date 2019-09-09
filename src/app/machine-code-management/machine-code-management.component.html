@@ -19,8 +19,8 @@
                         <tr *ngFor="let machineCode of machineCodeList; let i = index; let o = odd; let e = even">
                                 <td>{{machineCode.code}}</td>
                                 <td>{{machineCode.description}}</td>
-                                <td>{{machineCode.hourlyRent | currency : "USD" : "symbol" : 1.0-2}}</td>
-                                <td>{{machineCode.maxDailyHours}}</td>
+                                <td>{{machineCode.hourlyRent | currency : "USD" : "symbol" : "1.2-3" }}</td>
+                                <td>{{machineCode.maxDailyHours}} Hr.</td>
                                 <td (click)="updateMachineCode(machineCode)">Edit</td>
                                 <td (click)="removeMachineCode(machineCode)">Remove</td>
                         </tr>
