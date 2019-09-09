@@ -6,8 +6,7 @@ import { Entry, IEntry } from '../shared/models/entry';
 import { TimeCardService } from '../shared/services/timecard.service';
 import { JobCodeService } from '../shared/services/job-code.service';
 import { MachineCodeService } from '../shared/services/machine-code.service';
-import { DatePipe } from '@angular/common';
-import { element } from 'protractor';
+import { DatePipe } from '../shared/pipes/date.pipe';
 
 @Component({
   selector: 'app-timecard-submission',
@@ -143,27 +142,29 @@ export class TimecardSubmissionComponent implements OnInit, OnDestroy {
           this.review = true;
           this._timeCardService.getTimeCardbyId(selectedId).subscribe(
             (timeCard)=>{
+              console.log();
               this.timeCardToReview=timeCard;
-              let laborEntries: Array<Entry> = [];
-              let machineEntries: Array<Entry> = [];
-              
+              const machineEntries = this.timeCardSubmissionForm.get('machineEntries') as FormArray;
+              const laborEntries = this.timeCardSubmissionForm.get('laborEntries') as FormArray;
+              laborEntries.removeAt(0);
+              machineEntries.removeAt(0);
               timeCard.entries.forEach(element => {
-                if(element.type=="labor")
-                  laborEntries.push(element);
-                if(element.type=="machine")
-                  machineEntries.push(element);
+                if(element.type=="labor"){
+                  laborEntries.push(this._formBuilder.group({
+                    code: [element.code],
+                    hours: [element.hours],
+                    total: [element.total]
+                  }));
+                }
+                if(element.type=="machine"){
+                  machineEntries.push(this._formBuilder.group({
+                    code: [element.code],
+                    hours: [element.hours],
+                    total: [element.total]
+                  }));
+                }
               });
-              console.log(laborEntries);
-              console.log(machineEntries);
-              this.timeCardSubmissionForm = this._formBuilder.group({
-                details: this._formBuilder.group({
-                  code: [],
-                  contractorName: [],
-                  date: []
-                }),
-                laborEntries: this._formBuilder.array(laborEntries),
-                machineEntries: this._formBuilder.array(machineEntries)
-              });
+              
               this.timeCardSubmissionForm.get('details').disable();
               this.timeCardSubmissionForm.get('laborEntries').disable();
               this.timeCardSubmissionForm.get('machineEntries').disable();
@@ -171,6 +172,7 @@ export class TimecardSubmissionComponent implements OnInit, OnDestroy {
                 details: { 
                   code: timeCard.code,
                   contractorName: timeCard.contractorName,
+                  date: timeCard.date.toString().split('T')[0]
                 }
               });              
             },

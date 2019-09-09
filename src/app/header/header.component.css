@@ -6,6 +6,10 @@
     display: table;
 }
 
+.authenticated-user:hover{
+	color:darkcyan;
+}
+
 .page-title{
     display: table-cell;
     text-align: left;

@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from './shared/pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TimecardSubmissionComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,
