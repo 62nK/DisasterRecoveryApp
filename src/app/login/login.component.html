@@ -13,9 +13,10 @@
       <div class="form-group">
         <label>Username </label>
         <input type="text" formControlName="username" class="form-control">
-        <div *ngIf="!logInForm.controls.username?.valid"><small class="text-danger">Username is required</small></div>
+        
+        <div *ngIf="!logInForm.controls.username?.valid"><small class="text-danger">Username is required<br></small></div>
 
-        <label>Password </label>
+        <br><label>Password </label> <br>
         <input type="password" formControlName="password" class="form-control">
       </div>
       <button class="btn btn-primary" [disabled]="!logInForm.valid" type="submit">Sign-In</button>
