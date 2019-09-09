@@ -155,15 +155,15 @@ export class TimecardSubmissionComponent implements OnInit, OnDestroy {
               });
               console.log(laborEntries);
               console.log(machineEntries);
-              // this.timeCardSubmissionForm = this._formBuilder.group({
-              //   details: this._formBuilder.group({
-              //     code: [],
-              //     contractorName: [],
-              //     date: []
-              //   }),
-              //   laborEntries: this._formBuilder.array(laborEntries),
-              //   machineEntries: this._formBuilder.array(machineEntries)
-              // });
+              this.timeCardSubmissionForm = this._formBuilder.group({
+                details: this._formBuilder.group({
+                  code: [],
+                  contractorName: [],
+                  date: []
+                }),
+                laborEntries: this._formBuilder.array(laborEntries),
+                machineEntries: this._formBuilder.array(machineEntries)
+              });
               this.timeCardSubmissionForm.get('details').disable();
               this.timeCardSubmissionForm.get('laborEntries').disable();
               this.timeCardSubmissionForm.get('machineEntries').disable();
