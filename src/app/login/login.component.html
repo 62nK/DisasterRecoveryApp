@@ -14,7 +14,7 @@
         <label>Username </label>
         <input type="text" formControlName="username" class="form-control">
         
-        <div *ngIf="!logInForm.controls.username?.valid"><small class="text-danger">Username is required<br></small></div>
+        <div *ngIf="!logInForm.controls.username?.valid"><small class="text-danger"><br>Username is required!<br></small></div>
 
         <br><label>Password </label> <br>
         <input type="password" formControlName="password" class="form-control">
