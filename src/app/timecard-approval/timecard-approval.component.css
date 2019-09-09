@@ -21,9 +21,11 @@ thead{
     color: white;
     background-color: var(--mainblack);
 }
-tr:hover {
+.oddRow{
+    background-color: var(--accents);
+}
+.evenRow{
     background-color: white;
-    color: var(--mainblack);
 }
 td{
     padding: 4px;

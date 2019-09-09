@@ -48,7 +48,7 @@
                         <button (click)="addMachineEntry()" type="button">Add More</button>
                 </div>
                 <button type="button" (click)="cancelSubmission()">Cancel</button>
-                <button class="btn btn-primary" [disabled]="!timeCardSubmissionForm.valid" type="submit">Submit</button>
+                <button class="btn btn-primary" [disabled]="!timeCardSubmissionForm.valid&&!review" type="submit">{{review?"Approve":"Submit"}}</button>
         </form>
             <!-- <div class="validation">
                     <small *ngIf="!timeCardSubmissionForm.controls.code?.valid" class="text-danger">Job Code is required</small>

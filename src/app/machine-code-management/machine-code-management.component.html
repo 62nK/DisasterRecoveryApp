@@ -16,7 +16,7 @@
                         </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let machineCode of machineCodeList; let i = index; let o = odd; let e = even">
+                        <tr *ngFor="let machineCode of machineCodeList; let i = index; let o = odd; let e = even" [ngClass]="{oddRow: o, evenRow: e}">
                                 <td>{{machineCode.code}}</td>
                                 <td>{{machineCode.description}}</td>
                                 <td>{{machineCode.hourlyRent | currency : "USD" : "symbol" : "1.2-3" }}</td>

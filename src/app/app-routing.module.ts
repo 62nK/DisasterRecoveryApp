@@ -27,6 +27,7 @@ const routes: Routes = [
       {path: 'jobcode/submission/:id', component: JobCodeSubmissionComponent, canActivate: [RoleGuard]},
       {path: 'timecard/approval', component: TimecardApprovalComponent},
       {path: 'timecard/submission', component: TimecardSubmissionComponent},
+      {path: 'timecard/submission/:id', component: TimecardSubmissionComponent, canActivate: [RoleGuard]},
     ], 
     component: HomeComponent,
     canActivate: [AuthenticationGuard]

@@ -11,18 +11,18 @@
                                         <td>Total Hours</td>
                                         <td>Total Amount</td>
                                         <td>Status</td>
-                                        <td></td>
+                                        <td *ngIf="displayReview"></td>
                                         <td></td>
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr *ngFor="let timeCard of timeCardList; let i = index; let o = odd; let e = even">
+                                <tr *ngFor="let timeCard of timeCardList; let i = index; let o = odd; let e = even" [ngClass]="{oddRow: o, evenRow: e}">
                                         <td>{{timeCard.code}}</td>
                                         <td>{{timeCard.contractorName}}</td>
                                         <td>{{timeCard.hours}}</td>
                                         <td>{{timeCard.total | currency : "USD" : "symbol" : "1.2-3"}}</td>
-                                        <td>{{timeCard.finalized?'Finalized':'Open'}}</td>
-                                        <td (click)="update(timeCard)">Edit</td>
+                                        <td>{{timeCard.approved?'Approved':'Open'}}</td>
+                                        <td *ngIf="displayReview" (click)="review(timeCard)">Review</td>
                                         <td (click)="remove(timeCard)">Remove</td>
                                 </tr>
                         </tbody>
