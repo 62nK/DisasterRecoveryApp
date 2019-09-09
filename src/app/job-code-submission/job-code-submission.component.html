@@ -26,8 +26,8 @@
         </form>
         <div class="validation">
                 <small *ngIf="!jobCodeSubmissionForm.controls.code?.valid" class="text-danger">Job Code is required</small>
-                <small *ngIf="!jobCodeSubmissionForm.controls.hourlyRate?.valid" class="text-danger">Hourly Rate is required</small>
-                <small *ngIf="!jobCodeSubmissionForm.controls.maxDailyHours?.valid" class="text-danger">Max Daily Hours is required</small>
+                <small *ngIf="!jobCodeSubmissionForm.controls.hourlyRate?.valid" class="text-danger"><br><br>Hourly Rate is required</small>
+                <small *ngIf="!jobCodeSubmissionForm.controls.maxDailyHours?.valid" class="text-danger"><br>Max Daily Hours is required</small>
         </div>
     </div>
           <!-- <div><p class="text-danger">{{errorMessage}}</p></div> -->

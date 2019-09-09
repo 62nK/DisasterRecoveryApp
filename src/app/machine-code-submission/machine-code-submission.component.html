@@ -25,9 +25,9 @@
                 <button type="button" (click)="cancelSubmission()">Cancel</button>
         </form>
         <div class="validation">
-                <small *ngIf="machineCodeSubmissionForm.controls.code?.valid" class="text-danger">Machine Code is required</small>
-                <small *ngIf="machineCodeSubmissionForm.controls.hourlyRent?.valid" class="text-danger">Hourly Rent is required</small>
-                <small *ngIf="machineCodeSubmissionForm.controls.maxDailyHours?.valid" class="text-danger">Max Daily Hours required</small>  
+                <small *ngIf="!machineCodeSubmissionForm.controls.code?.valid" class="text-danger">Machine Code is required</small>
+                <small *ngIf="!machineCodeSubmissionForm.controls.hourlyRent?.valid" class="text-danger"><br><br>Hourly Rent is required</small>
+                <small *ngIf="!machineCodeSubmissionForm.controls.maxDailyHours?.valid" class="text-danger"><br>Max Daily Hours required</small>  
         </div>
         
     </div>
